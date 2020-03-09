@@ -6,10 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
-
 import main.operacao.Operacao;
 
 public class Leitura {
@@ -35,17 +32,20 @@ public class Leitura {
 				linha = percorreLinha.readLine();
 				while (linha.matches("\\s*"))
 					linha = percorreLinha.readLine();
-				
+
 				Operacao op = new Operacao();
-				
+
 				if (linha.matches("DEPOSITO\\s*")) {
 					op.setTipo(0);
 				} else if (linha.matches("DEPOSITO SANGRIA\\s*")) {
 					sangria = true;
 					op.setTipo(1);
-				} else {
+				} else if (linha.matches("RECOLHIMENTO\\s*")) {
 					recolhimento = true;
 					op.setTipo(2);
+				} else {
+					while ((!(linha.contains("********")) && (linha = percorreLinha.readLine()) != null))
+						;
 				}
 
 				linha = percorreLinha.readLine();
@@ -116,7 +116,7 @@ public class Leitura {
 						op.setCodigo_lacre(Long.parseLong(separador[3]));
 				}
 
-				while (!(linha.contains("VALOR DEPOSITADO") || linha.contains("VALORES VALIDADOS")))
+				while (!(linha.contains("VALOR DEPOSITADO") || linha.contains("VALORES VALIDADOS") || linha.contains("VALORES A+B")))
 					linha = percorreLinha.readLine();
 				if (linha.contains("VALOR DEPOSITADO")) {
 					separador = linha.split("\\s+");
@@ -140,19 +140,31 @@ public class Leitura {
 					linha = percorreLinha.readLine();
 					while (!linha.contains("$"))
 						linha = percorreLinha.readLine();
+
+				} else if (linha.contains("VALOR (A + B")) {
 					separador = linha.split("\\s+");
-					for (int i = 0; i < 6; i++) {
-						separador = linha.split("\\s+");
-						op.setDenominacao(Integer.parseInt(separador[2]), i);
-						linha = percorreLinha.readLine();
-					}
+					separador = separador[0].split(",");
+					op.setValorAB(Integer.parseInt(separador[0]));
 				}
-				while ((!(linha.contains("********")) && (linha = percorreLinha.readLine()) != null)) {}
+
+				
+//				 linha = percorreLinha.readLine(); while (!linha.contains("$")) linha =
+//				 percorreLinha.readLine();
+//				 
+//				
+//				 separador = linha.split("\\s+"); for (int i = 0; i < 6; i++) { separador =
+//				 linha.split("\\s+"); op.setDenominacao(Integer.parseInt(separador[2]), i);
+//				 linha = percorreLinha.readLine(); }
+//				 
+
+				while ((!(linha.contains("********")) && (linha = percorreLinha.readLine()) != null)) {
+				}
 
 				listaOperacoes.add(op);
 			}
+		} catch (
 
-		} catch (FileNotFoundException e) { // arquivo nao existente
+		FileNotFoundException e) { // arquivo nao existente
 			System.out.println("File Not Found Exception: \n" + e.getMessage());
 		} catch (ArrayIndexOutOfBoundsException e) { // posicao invalida array
 			System.out.println("Index Out Of Bounds Exception: \n" + e.getMessage());

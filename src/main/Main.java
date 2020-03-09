@@ -11,7 +11,8 @@ public class Main {
 	public static void main(String[] args) throws SQLException {
 		Leitura ler = new Leitura();
 //		LinkedList<Operacao> list = ler.ler("0001_        00000016_05122019010004.EJMC");
-		LinkedList<Operacao> list = ler.ler("0001_0000000000000001_1501020010005.EJMC");
+//		LinkedList<Operacao> list = ler.ler("0001_0000000000000001_1501020010005.EJMC");
+		LinkedList<Operacao> list = ler.ler("19022000 (2).ejm");
 		
 //		InserirNoBD insere = new InserirNoBD(list);
 		
@@ -31,6 +32,7 @@ public class Main {
 			System.out.println("PDV: " + list.get(i).getPdv());
 			System.out.println("CODIGO DO LACRE: " + list.get(i).getCodigo_lacre());
 			System.out.println("TOTAL: " + list.get(i).getTotal());
+//			System.out.println("TOTAL A+B: " + list.get(i).getValorAB());
 			System.out.println("DENOMINACAO 2: " + list.get(i).getDenominacao(0));
 			System.out.println("DENOMINACAO 5: " + list.get(i).getDenominacao(1));
 			System.out.println("DENOMINACAO 10: " + list.get(i).getDenominacao(2));

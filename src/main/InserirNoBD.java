@@ -1,9 +1,9 @@
 package main;
 
+import java.security.GeneralSecurityException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.LinkedList;
 import main.operacao.Operacao;
 
@@ -13,8 +13,21 @@ public class InserirNoBD {
 
 	public InserirNoBD(LinkedList<Operacao> list) throws SQLException {
 		this.list = list;
+		
+		
 		con = GetConnection.connect();
-		Statement stm = con.createStatement();
-		stm.execute("insert into teste (nome) values ('joao')");
+
+		Operacao operacao = new Operacao();
+
+		PreparedStatement stm = con.prepareStatement("insert into bancolog(?) values ? ");
+		stm.execute();
+
+		stm.setInt(1, operacao.getTipo());
+		stm.setString(2, operacao.getData());
+		stm.setString(3, operacao.getHora());
+		stm.setInt(4, operacao.getId_operador());
+		
+
 	}
+
 }

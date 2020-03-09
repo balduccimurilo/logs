@@ -14,7 +14,17 @@ public class Operacao {
 	int pdv = -1;
 	int[] denominacao = new int[6];
 	int total;
+	double valorAB;
 	Long codigo_lacre = (long) -1;
+	
+
+	
+	public double getValorAB() {
+		return valorAB;
+	}
+	public void setValorAB(double valorAB) {
+		this.valorAB = valorAB;
+	}
 	
 	public int getTipo() {
 		return tipo;

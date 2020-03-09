@@ -17,8 +17,8 @@ public class MainRegex {
 		
 		StringBuilder contentBuilder = new StringBuilder();
 
-		try (Stream<String> stream = Files.lines(Paths.get("0001_        00000016_05122019010004.EJMC"),
-//		try (Stream<String> stream = Files.lines(Paths.get("0001_0000000000000001_1501020010005.EJMC"),
+//		try (Stream<String> stream = Files.lines(Paths.get("0001_        00000016_05122019010004.EJMC"),
+	try (Stream<String> stream = Files.lines(Paths.get("0001_0000000000000001_1501020010005.EJMC"),
 				StandardCharsets.UTF_8)) {
 			stream.forEach(s -> contentBuilder.append(s).append("\n"));
 		} catch (IOException e) {

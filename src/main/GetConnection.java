@@ -14,13 +14,14 @@ import main.operacao.Operacao;
 
 public class GetConnection {
 	private static Connection conn = null;
-
+	
+		
 	public static Connection connect() {
 		if (conn == null) {
 			try {
 				Properties props = loadProperties();
 				String url = props.getProperty("dburl");
-				conn = DriverManager.getConnection(url, props);
+				conn = DriverManager.getConnection("jdbc:mysql://localhost/logbanco?useTimezone=true&serverTimezone=UTC", "root", "root");
 			} catch (SQLException e) {
 				e.getMessage();
 			}
@@ -70,4 +71,6 @@ public class GetConnection {
 			}
 		}
 	}
+
 }
+
