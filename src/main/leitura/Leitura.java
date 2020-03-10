@@ -116,7 +116,7 @@ public class Leitura {
 						op.setCodigo_lacre(Long.parseLong(separador[3]));
 				}
 
-				while (!(linha.contains("VALOR DEPOSITADO") || linha.contains("VALORES VALIDADOS") || linha.contains("VALORES A+B")))
+				while (!(linha.contains("VALOR DEPOSITADO") || linha.contains("VALORES VALIDADOS") || linha.contains("TOTAL (A + B)")))
 					linha = percorreLinha.readLine();
 				if (linha.contains("VALOR DEPOSITADO")) {
 					separador = linha.split("\\s+");
@@ -141,10 +141,10 @@ public class Leitura {
 					while (!linha.contains("$"))
 						linha = percorreLinha.readLine();
 
-				} else if (linha.contains("VALOR (A + B")) {
+				} else if (linha.contains("VALOR (A + B)")) {
 					separador = linha.split("\\s+");
-					separador = separador[0].split(",");
-					op.setValorAB(Integer.parseInt(separador[0]));
+					separador = separador[4].split(":");
+					op.setValorAB(Integer.parseInt(separador[2]));
 				}
 
 				
