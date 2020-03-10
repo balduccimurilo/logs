@@ -11,16 +11,13 @@ import java.text.NumberFormat;
 import java.util.LinkedList;
 
 import main.ConnectionFactory;
-import main.dao;
+import main.Dao;
 import main.operacao.Operacao;
 
 public class Leitura {
-	String Arquivo;
 	Operacao op;
-	NumberFormat nf = new DecimalFormat("0");
 	LinkedList<Operacao> listaOperacoes = new LinkedList<>();
 
-	
 	public LinkedList<Operacao> ler(String Arquivo) throws SQLException {
 		// vetores que recebem as coordenadas em double do arquivo
 		BufferedReader percorreLinha = null; // buffer que le as linhas do arquivo todo
@@ -31,7 +28,7 @@ public class Leitura {
 		Connection con = ConnectionFactory.recuperarConexao();
 
 		try { // se der erro ja vai para os catchs de exceptions
-			percorreLinha = new BufferedReader(new FileReader(Arquivo));
+			percorreLinha = new BufferedReader(new FileReader("./logArchive/" + Arquivo));
 			System.out.println(Arquivo);
 			linha = percorreLinha.readLine();
 
@@ -53,6 +50,7 @@ public class Leitura {
 				} else {
 					while ((!(linha.contains("********")) && (linha = percorreLinha.readLine()) != null))
 						;
+					continue;
 				}
 
 				linha = percorreLinha.readLine();
@@ -79,12 +77,22 @@ public class Leitura {
 				while (linha.matches("\\s*"))
 					linha = percorreLinha.readLine();
 				separador = linha.split("\\s+");
-				if (separador.length == 2)
-					op.setNome_operador(null);
-				else {
+//				if (separador.length == 2)
+//					op.setNome_operador(null);
+				if (linha.contains("NOME OPERADOR")) {
 					for (int i = 2; i < separador.length; i++) {
+//						linha = percorreLinha.readLine();
+//						separador = linha.split(":");
 						op.setNome_operador(separador[i] + " ");
+//						op.setNome_operador(separador[2] + " ");
 					}
+				} else if (separador.length == 2) {
+					op.setNome_operador(null);
+				} else {
+//						linha = percorreLinha.readLine();
+					separador = linha.split(":");
+					op.setNome_operador(separador[1] + " ");
+
 				}
 
 				linha = percorreLinha.readLine();
@@ -123,7 +131,8 @@ public class Leitura {
 						op.setCodigo_lacre(Long.parseLong(separador[3]));
 				}
 
-				while (!(linha.contains("VALOR DEPOSITADO") || linha.contains("VALORES VALIDADOS")|| linha.contains("TOTAL (A + B)")))
+				while (!(linha.contains("VALOR DEPOSITADO") || linha.contains("VALORES VALIDADOS")
+						|| linha.contains("TOTAL (A + B)")))
 					linha = percorreLinha.readLine();
 				if (linha.contains("VALOR DEPOSITADO")) {
 					separador = linha.split("\\s+");
@@ -148,10 +157,10 @@ public class Leitura {
 					while (!linha.contains("$"))
 						linha = percorreLinha.readLine();
 
-				} else if (linha.contains("VALOR (A + B)")) {
-//					separador = linha.split("\\s+");
-					separador = separador[4].split(":");
-					op.setValorAB(Integer.parseInt(separador[1]));
+				} else if (linha.contains("TOTAL (A + B)")) {
+					separador = linha.split("\\s+");
+					separador = separador[4].split(",");
+					op.setValorAB(Integer.parseInt(separador[0].replace(".", "")));
 				}
 
 //				dao d = new dao();

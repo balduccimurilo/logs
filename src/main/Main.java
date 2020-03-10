@@ -1,5 +1,6 @@
 package main;
 
+import java.io.File;
 import java.sql.SQLException;
 import java.util.LinkedList;
 
@@ -10,8 +11,13 @@ public class Main {
 
 	public static void main(String[] args) throws SQLException {
 		Leitura ler = new Leitura();
+		
+		File directory = new File("./logArchive");
+		File[] archivesList = directory.listFiles();
+		LinkedList<Operacao> list = ler.ler(archivesList[1].getName());
+		
 //		LinkedList<Operacao> list = ler.ler("0001_        00000016_05122019010004.EJMC");
-		LinkedList<Operacao> list = ler.ler("0001_0000000000000001_1501020010005.EJMC");
+//		LinkedList<Operacao> list = ler.ler("0001_0000000000000001_1501020010005.EJMC");
 //		LinkedList<Operacao> list = ler.ler("19022000 (2).ejm");
 		
 //		InserirNoBD insere = new InserirNoBD(list);

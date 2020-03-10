@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 import main.operacao.Operacao;
 
-public class dao {
+public class Dao {
 
 	public void gravarBanco(Operacao op, Connection con) throws SQLException {
 
