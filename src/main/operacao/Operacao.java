@@ -1,5 +1,7 @@
 package main.operacao;
 
+import java.util.Arrays;
+
 public class Operacao {
 	
 	int tipo;
@@ -106,6 +108,17 @@ public class Operacao {
 	public void setCodigo_lacre(Long codigo_lacre) {
 		this.codigo_lacre = codigo_lacre;
 	}
+	
+	@Override
+	public String toString() {
+		return "Operacao [tipo=" + tipo + ", data=" + data + ", hora=" + hora + ", id_atm=" + id_atm + ", id_operador="
+				+ id_operador + ", sequencia=" + sequencia + ", nome_operador=" + nome_operador + ", id_coleta="
+				+ id_coleta + ", id_sangria=" + id_sangria + ", pdv=" + pdv + ", denominacao="
+				+ Arrays.toString(denominacao) + ", total=" + total + ", valorAB=" + valorAB + ", codigo_lacre="
+				+ codigo_lacre + "]";
+	}
+	
+	
 	
 	
 }
