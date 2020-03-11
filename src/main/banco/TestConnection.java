@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class TestConnection {
 
-	public static void main(String[] args) throws SQLException {
+	public static void main(String[] args) throws SQLException, InterruptedException {
 		
 		Connection con = ConnectionFactory.recuperarConexao();
 		

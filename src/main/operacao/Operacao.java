@@ -1,10 +1,13 @@
 package main.operacao;
 
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 public class Operacao {
 	
-	int tipo;
+	String tipo;
 	String data;
 	String hora;
 	int id_atm;
@@ -12,12 +15,12 @@ public class Operacao {
 	int sequencia;
 	String nome_operador = "";
 	String id_coleta;
-	int id_sangria = -1;
-	int pdv = -1;
+	int id_sangria = 0;
+	int pdv = 0;
 	int[] denominacao = new int[6];
 	int total;
 	double valorAB;
-	Long codigo_lacre = (long) -1;
+	Long codigo_lacre = (long) 0;
 	
 
 	
@@ -28,11 +31,11 @@ public class Operacao {
 		this.valorAB = valorAB;
 	}
 	
-	public int getTipo() {
+	public String getTipo() {
 		return tipo;
 	}
-	public void setTipo(int tipo) {
-		this.tipo = tipo;
+	public void setTipo(String string) {
+		this.tipo = string;
 	}
 	public String getData() {
 		return data;
@@ -108,6 +111,8 @@ public class Operacao {
 	public void setCodigo_lacre(Long codigo_lacre) {
 		this.codigo_lacre = codigo_lacre;
 	}
+	
+
 	
 	@Override
 	public String toString() {

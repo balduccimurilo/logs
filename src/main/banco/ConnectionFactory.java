@@ -5,12 +5,23 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionFactory {
-	
-	public  static Connection recuperarConexao() throws SQLException {
-		Connection con = DriverManager.getConnection("jdbc:mysql://localhost/logbanco?useTimezone=true&serverTimezone=UTC","root","root");
+
+	public static Connection recuperarConexao() throws SQLException, InterruptedException {
+
+		String url = "jdbc:postgresql://localhost:5432/transaction";
+		String user = "postgres";
+		String password = "root";
+
+		Connection con = DriverManager
+				.getConnection(url, user, password);
 		
+
+
 		if (con != null) {
-			System.out.println("Banco conectado com sucesso!");
+			System.out.println("Trying connect...");
+			Thread.sleep(4000);
+			System.out.println("Connected to PostgreSQL database!");
+			Thread.sleep(4000);
 		}
 		return con;
 	}

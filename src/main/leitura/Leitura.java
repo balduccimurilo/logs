@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.LinkedList;
 
 import main.banco.ConnectionFactory;
@@ -18,7 +19,7 @@ public class Leitura {
 	Operacao op;
 	LinkedList<Operacao> listaOperacoes = new LinkedList<>();
 
-	public LinkedList<Operacao> ler(String Arquivo) throws SQLException {
+	public LinkedList<Operacao> ler(String Arquivo) throws SQLException, InterruptedException, ParseException {
 		// vetores que recebem as coordenadas em double do arquivo
 		BufferedReader percorreLinha = null; // buffer que le as linhas do arquivo todo
 		String linha;
@@ -40,13 +41,13 @@ public class Leitura {
 				Operacao op = new Operacao();
 
 				if (linha.matches("DEPOSITO\\s*")) {
-					op.setTipo(0);
+					op.setTipo("DEPOSITO");
 				} else if (linha.matches("DEPOSITO SANGRIA\\s*")) {
 					sangria = true;
-					op.setTipo(1);
+					op.setTipo("DEPOSITO SANGRIA");
 				} else if (linha.matches("RECOLHIMENTO\\s*")) {
 					recolhimento = true;
-					op.setTipo(2);
+					op.setTipo("RECOLHIMENTO");
 				} else {
 					while ((!(linha.contains("********")) && (linha = percorreLinha.readLine()) != null))
 						;
@@ -160,11 +161,13 @@ public class Leitura {
 				} else if (linha.contains("TOTAL (A + B)")) {
 					separador = linha.split("\\s+");
 					separador = separador[4].split(",");
-					op.setValorAB(Integer.parseInt(separador[0].replace(".", "")));
+					op.setTotal(Integer.parseInt(separador[0].replace(".", "")));
 				}
 
-//				Dao d = new Dao();
-//				d.gravarBanco(op, con);
+				Dao d = new Dao();
+				d.gravarBanco(op, con);
+				
+				
 				
 				while ((!(linha.contains("********")) && (linha = percorreLinha.readLine()) != null)) {
 				}
