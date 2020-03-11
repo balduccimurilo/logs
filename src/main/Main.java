@@ -14,7 +14,7 @@ public class Main {
 		
 		File directory = new File("./logArchive");
 		File[] archivesList = directory.listFiles();
-		LinkedList<Operacao> list = ler.ler(archivesList[1].getName());
+		LinkedList<Operacao> list = ler.ler(archivesList[2].getName());
 		
 //		LinkedList<Operacao> list = ler.ler("0001_        00000016_05122019010004.EJMC");
 //		LinkedList<Operacao> list = ler.ler("0001_0000000000000001_1501020010005.EJMC");

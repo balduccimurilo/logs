@@ -1,4 +1,4 @@
-package main;
+package main.banco;
 
 import java.security.GeneralSecurityException;
 import java.sql.Connection;

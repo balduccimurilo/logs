@@ -10,8 +10,8 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.LinkedList;
 
-import main.ConnectionFactory;
-import main.Dao;
+import main.banco.ConnectionFactory;
+import main.banco.Dao;
 import main.operacao.Operacao;
 
 public class Leitura {
@@ -163,22 +163,14 @@ public class Leitura {
 					op.setValorAB(Integer.parseInt(separador[0].replace(".", "")));
 				}
 
-//				dao d = new dao();
+//				Dao d = new Dao();
 //				d.gravarBanco(op, con);
-
-				// linha = percorreLinha.readLine(); while (!linha.contains("$")) linha =
-				// percorreLinha.readLine();
-				//
-				//
-				// separador = linha.split("\\s+"); for (int i = 0; i < 6; i++) { separador =
-				// linha.split("\\s+"); op.setDenominacao(Integer.parseInt(separador[2]), i);
-				// linha = percorreLinha.readLine(); }
-				//
-
+				
 				while ((!(linha.contains("********")) && (linha = percorreLinha.readLine()) != null)) {
 				}
 
 				listaOperacoes.add(op);
+				
 			}
 		} catch (
 

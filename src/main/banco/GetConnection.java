@@ -1,4 +1,4 @@
-package main;
+package main.banco;
 
 import java.io.FileInputStream;
 import java.io.IOException;
