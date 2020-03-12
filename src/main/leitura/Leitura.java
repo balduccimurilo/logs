@@ -6,8 +6,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.LinkedList;
 
@@ -19,7 +17,7 @@ public class Leitura {
 	Operacao op;
 	LinkedList<Operacao> listaOperacoes = new LinkedList<>();
 
-	public LinkedList<Operacao> ler(String Arquivo) throws SQLException, InterruptedException, ParseException {
+	public LinkedList<Operacao> ler(String archive) throws SQLException, InterruptedException, ParseException {
 		// vetores que recebem as coordenadas em double do arquivo
 		BufferedReader percorreLinha = null; // buffer que le as linhas do arquivo todo
 		String linha;
@@ -29,8 +27,8 @@ public class Leitura {
 		Connection con = ConnectionFactory.recuperarConexao();
 
 		try { // se der erro ja vai para os catchs de exceptions
-			percorreLinha = new BufferedReader(new FileReader("./logArchive/" + Arquivo));
-			System.out.println(Arquivo);
+			percorreLinha = new BufferedReader(new FileReader("./logArchive/" + archive));
+			System.out.println(archive);
 			linha = percorreLinha.readLine();
 
 			while (percorreLinha.ready()) {

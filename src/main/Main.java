@@ -2,30 +2,73 @@ package main;
 
 import java.io.File;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.text.ParseException;
-import java.util.LinkedList;
 
 import main.leitura.Leitura;
-import main.operacao.Format;
-import main.operacao.Operacao;
 
 public class Main {
 
 	public static void main(String[] args) throws SQLException, InterruptedException, ParseException {
+		
 		Leitura ler = new Leitura();
 		
 		
+
 		File directory = new File("./logArchive");
 		File[] archivesList = directory.listFiles();
-		LinkedList<Operacao> list = ler.ler(archivesList[2].getName());
+
 		
+		
+		
+//		LinkedList<Operacao> list = ler.ler(archivesList[0].getName());
+		
+//		for (File file : archivesList) {
+//		    if (file.isFile()) {
+//		        ler.ler(file.getName());
+//		    } else {
+//		    	
+//		    }
+//		    return System.out.println("Acabou!")
+//		}
+//		
+				
+//		
+//		try {
+//			final File myFile = new File("./logArchive");
+//			if (myFile.renameTo(new File("./RemovedArchives" + myFile.getName()))) {
+//				System.out.println("File is moved successful!");
+//			} else {
+//				System.out.println("File is failed to move!");
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+
+		// To move my archives already read
+
+//		if (!directory.exists()) {
+//			directory.mkdirs();
+//		}
+
+		// Check weather source exists and it is folder.
+//		if (sourceFolder.exists() && sourceFolder.isDirectory()) {
+//			// Get list of the files and iterate over them
+//			File[] listRemoved = sourceFolder.listFiles();
+//
+//			if (listRemoved != null) {
+//				for (File child : listRemoved) {
+//					// Move files to destination folder
+//					child.renameTo(new File(directory + "\\" + child.getName()));
+//				}
+//			}
+//		} else {
+//			System.out.println(sourceFolder + "  Folder does not exists");
+//		}
+
 //		LinkedList<Operacao> list = ler.ler("0001_        00000016_05122019010004.EJMC");
 //		LinkedList<Operacao> list = ler.ler("0001_0000000000000001_1501020010005.EJMC");
 //		LinkedList<Operacao> list = ler.ler("19022000 (2).ejm");
-		
-//		InserirNoBD insere = new InserirNoBD(list);
-		
+
 //		@SuppressWarnings("deprecation")
 //        java.sql.Timestamp ts = new java.sql.Timestamp(
 //                java.util.Date.parse(list.get(0).getData() + " " + list.get(0).getHora()));
@@ -56,17 +99,7 @@ public class Main {
 //			System.out.println("DENOMINACAO 100: " + list.get(i).getDenominacao(5));
 //			System.out.println("\n************************************\n\n");
 //			System.out.println(Timestamp.valueOf(Format.formatter(list.get(1).getData(), list.get(1).getHora())));
-			
-		
-		
-		
-		
-		
-		
-		}
-		
-		
+
 	}
 
-
-
+}

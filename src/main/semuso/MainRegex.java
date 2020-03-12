@@ -1,4 +1,4 @@
-package main;
+package main.semuso;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
