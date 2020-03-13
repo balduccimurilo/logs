@@ -24,7 +24,7 @@ public class Leitura {
 		String[] separador;
 		boolean sangria = false;
 		boolean recolhimento = false;
-		Connection con = ConnectionFactory.recuperarConexao();
+		Connection con = ConnectionFactory.getConnection();
 
 		try { // se der erro ja vai para os catchs de exceptions
 			percorreLinha = new BufferedReader(new FileReader("./logArchive/" + archive));

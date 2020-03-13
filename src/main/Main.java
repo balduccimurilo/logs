@@ -5,17 +5,26 @@ import java.sql.SQLException;
 import java.text.ParseException;
 
 import main.leitura.Leitura;
+import main.leitura.ThreadReading;
 
 public class Main {
 
 	public static void main(String[] args) throws SQLException, InterruptedException, ParseException {
 		
-		Leitura ler = new Leitura();
-		
-		
 
-		File directory = new File("./logArchive");
-		File[] archivesList = directory.listFiles();
+//		new ThreadReading().init();
+		
+		
+		
+		
+		
+		
+		//		Leitura ler = new Leitura();
+//		
+//		
+//
+//		File directory = new File("./logArchive");
+//		File[] archivesList = directory.listFiles();
 
 		
 		

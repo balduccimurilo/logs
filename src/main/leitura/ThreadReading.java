@@ -49,7 +49,9 @@ public class ThreadReading implements Runnable {
 	}
 
 	public void newFile(String file) throws IOException, SQLException, InterruptedException, ParseException {
-		new Leitura().ler(file);
+
+			new Leitura().ler(file);
+
 	}
 
 	@Override
